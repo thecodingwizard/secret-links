@@ -1,13 +1,14 @@
 package main
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/labstack/echo"
 	"google.golang.org/appengine"
-	"google.golang.org/appengine/datastore"
 )
+
+// DB is the Google Datastore interface
+var DB = LinksDatabase{}
 
 func main() {
 	e := echo.New()
@@ -21,7 +22,12 @@ func main() {
 
 func getLink(c echo.Context) error {
 	url := c.Param("url")
-	link := dbGetLink(url, c.Request())
+
+	link, err := DB.getLinksWithURL(url, c.Request())
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+
 	return c.JSON(http.StatusOK, link)
 }
 
@@ -31,34 +37,9 @@ func addLink(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, "Invalid Data")
 	}
 
-	log.Print(link)
-
-	if _, err := dbAddLink(link, c.Request()); err != nil {
+	if _, err := DB.addLink(link, c.Request()); err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
 	return c.JSON(http.StatusOK, "OK")
-}
-
-func dbAddLink(link *Link, r *http.Request) (*datastore.Key, error) {
-	ctx := appengine.NewContext(r)
-
-	return datastore.Put(ctx, datastore.NewIncompleteKey(ctx, "Link", nil), link)
-}
-
-func dbGetLink(url string, r *http.Request) *[]Link {
-	ctx := appengine.NewContext(r)
-
-	q := datastore.NewQuery("Link").Filter("URL =", "google")
-	var result []Link
-	if _, err := q.GetAll(ctx, &result); err != nil {
-		log.Println("datastore error", err.Error())
-		return nil
-	}
-
-	if len(result) < 1 {
-		return nil
-	}
-
-	return &result
 }
