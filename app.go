@@ -3,9 +3,11 @@ package main
 import (
 	"crypto/aes"
 	"crypto/cipher"
+	"crypto/rand"
 	"crypto/sha1"
 	"encoding/base64"
 	"errors"
+	"io"
 	"net/http"
 
 	"github.com/labstack/echo"
@@ -47,9 +49,18 @@ func getLink(c echo.Context) error {
 }
 
 func addLink(c echo.Context) error {
-	link := new(Link)
-	if err := c.Bind(link); err != nil {
+	linkData := new(AddLinkData)
+	if err := c.Bind(linkData); err != nil {
 		return c.JSON(http.StatusBadRequest, "Invalid Data")
+	}
+
+	link := &Link{
+		URL:  linkData.URL,
+		Name: linkData.Name,
+		Link: linkData.Link,
+	}
+	if err := encryptLink(link, linkData.Password); err != nil {
+		return c.JSON(http.StatusBadRequest, "Error during encryption")
 	}
 
 	if _, err := DB.addLink(link, c.Request()); err != nil {
@@ -57,6 +68,20 @@ func addLink(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, "OK")
+}
+
+func encryptLink(link *Link, pass string) error {
+	plaintext := link.Link
+	key := keyFromPass(pass)
+	encrypted, err := encrypt(key, plaintext)
+
+	if encrypted == "" || err != nil {
+		return errors.New("Error during encryption")
+	}
+
+	link.Link = encrypted
+
+	return nil
 }
 
 func decryptLink(link *Link, pass string) error {
@@ -73,8 +98,32 @@ func decryptLink(link *Link, pass string) error {
 }
 
 func keyFromPass(pass string) []byte {
-	dk := pbkdf2.Key([]byte("some password"), []byte("012345678901234567890123456789012"), 4096, 32, sha1.New)
+	dk := pbkdf2.Key([]byte(pass), []byte("012345678901234567890123456789012"), 4096, 32, sha1.New)
 	return dk
+}
+
+func encrypt(key []byte, message string) (encmess string, err error) {
+	plainText := []byte(message)
+
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		return
+	}
+
+	//IV needs to be unique, but doesn't have to be secure.
+	//It's common to put it at the beginning of the ciphertext.
+	cipherText := make([]byte, aes.BlockSize+len(plainText))
+	iv := cipherText[:aes.BlockSize]
+	if _, err = io.ReadFull(rand.Reader, iv); err != nil {
+		return
+	}
+
+	stream := cipher.NewCFBEncrypter(block, iv)
+	stream.XORKeyStream(cipherText[aes.BlockSize:], plainText)
+
+	//returns to base64 encoded string
+	encmess = base64.URLEncoding.EncodeToString(cipherText)
+	return
 }
 
 func decrypt(key []byte, securemess string) (decodedmess string, err error) {

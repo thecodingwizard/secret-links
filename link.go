@@ -7,6 +7,14 @@ type Link struct {
 	Link string `json:"link"`
 }
 
+// AddLinkData holds information needed to create a new secret link
+type AddLinkData struct {
+	URL      string `json:"url"`
+	Name     string `json:"name"`
+	Link     string `json:"link"`
+	Password string `json:"password"`
+}
+
 // LinksDatabase provides access to a database of links
 type LinksDatabase struct{}
 
