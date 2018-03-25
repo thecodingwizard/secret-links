@@ -7,7 +7,7 @@ import (
 	"google.golang.org/appengine/datastore"
 )
 
-func (db *LinksDatabase) getLinksWithURL(url string, r *http.Request) (*[]Link, error) {
+func (db *LinksDatabase) getLinkWithURL(url string, r *http.Request) (*Link, error) {
 	ctx := appengine.NewContext(r)
 
 	q := datastore.NewQuery("Link").Filter("URL =", "google")
@@ -16,7 +16,11 @@ func (db *LinksDatabase) getLinksWithURL(url string, r *http.Request) (*[]Link, 
 		return nil, err
 	}
 
-	return &result, nil
+	if len(result) < 1 {
+		return nil, nil
+	}
+
+	return &result[0], nil
 }
 
 func (db *LinksDatabase) addLink(link *Link, r *http.Request) (*datastore.Key, error) {
