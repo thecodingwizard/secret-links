@@ -28,3 +28,15 @@ func (db *LinksDatabase) addLink(link *Link, r *http.Request) (*datastore.Key, e
 
 	return datastore.Put(ctx, datastore.NewIncompleteKey(ctx, "Link", nil), link)
 }
+
+func (db *LinksDatabase) getLinksWithTag(tag string, r *http.Request) (*[]Link, error) {
+	ctx := appengine.NewContext(r)
+
+	q := datastore.NewQuery("Link").Filter("Tag =", tag)
+	var result []Link
+	if _, err := q.GetAll(ctx, &result); err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
