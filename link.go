@@ -2,17 +2,19 @@ package main
 
 // Link holds information about a secret link
 type Link struct {
-	URL  string `json:"url"`
-	Name string `json:"name"`
-	Link string `json:"link"`
+	AccessURL string `json:"accessURL"`
+	Name      string `json:"name"`
+	Link      string `json:"link"`
+	Tag       string `json:"tag"`
 }
 
 // AddLinkData holds information needed to create a new secret link
 type AddLinkData struct {
-	URL      string `json:"url"`
-	Name     string `json:"name"`
-	Link     string `json:"link"`
-	Password string `json:"password"`
+	AccessURL string `json:"accessURL"`
+	Name      string `json:"name"`
+	Link      string `json:"link"`
+	Tag       string `json:"tag"`
+	Password  string `json:"password"`
 }
 
 // LinksDatabase provides access to a database of links

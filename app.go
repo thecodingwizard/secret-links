@@ -61,9 +61,9 @@ func addLink(c echo.Context) error {
 	}
 
 	link := &Link{
-		URL:  linkData.URL,
-		Name: linkData.Name,
-		Link: linkData.Link,
+		AccessURL: linkData.AccessURL,
+		Name:      linkData.Name,
+		Link:      linkData.Link,
 	}
 	if err := encryptLink(link, linkData.Password); err != nil {
 		return c.JSON(http.StatusBadRequest, "Error during encryption")

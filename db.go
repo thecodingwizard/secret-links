@@ -10,7 +10,7 @@ import (
 func (db *LinksDatabase) getLinkWithURL(url string, r *http.Request) (*Link, error) {
 	ctx := appengine.NewContext(r)
 
-	q := datastore.NewQuery("Link").Filter("URL =", url)
+	q := datastore.NewQuery("Link").Filter("AccessURL =", url)
 	var result []Link
 	if _, err := q.GetAll(ctx, &result); err != nil {
 		return nil, err
