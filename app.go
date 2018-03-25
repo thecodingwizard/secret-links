@@ -9,6 +9,7 @@ import (
 	"errors"
 	"io"
 	"net/http"
+	"strings"
 
 	"github.com/labstack/echo"
 	"golang.org/x/crypto/pbkdf2"
@@ -17,6 +18,11 @@ import (
 
 // DB is the Google Datastore interface
 var DB = LinksDatabase{}
+
+// CheckString will be prepended to every link before encryption.
+// After encryption, if CheckString is not at the beginning of the result,
+// the decryption has failed (incorrect password).
+const CheckString = "check"
 
 func main() {
 	e := echo.New()
@@ -71,7 +77,7 @@ func addLink(c echo.Context) error {
 }
 
 func encryptLink(link *Link, pass string) error {
-	plaintext := link.Link
+	plaintext := CheckString + link.Link
 	key := keyFromPass(pass)
 	encrypted, err := encrypt(key, plaintext)
 
@@ -93,7 +99,11 @@ func decryptLink(link *Link, pass string) error {
 		return errors.New("Error during decryption")
 	}
 
-	link.Link = decrypted
+	if !strings.HasPrefix(decrypted, CheckString) {
+		return errors.New("Invalid password")
+	}
+
+	link.Link = strings.TrimPrefix(decrypted, CheckString)
 	return nil
 }
 
@@ -110,8 +120,8 @@ func encrypt(key []byte, message string) (encmess string, err error) {
 		return
 	}
 
-	//IV needs to be unique, but doesn't have to be secure.
-	//It's common to put it at the beginning of the ciphertext.
+	// IV needs to be unique, but doesn't have to be secure.
+	// It's common to put it at the beginning of the ciphertext.
 	cipherText := make([]byte, aes.BlockSize+len(plainText))
 	iv := cipherText[:aes.BlockSize]
 	if _, err = io.ReadFull(rand.Reader, iv); err != nil {
@@ -142,8 +152,8 @@ func decrypt(key []byte, securemess string) (decodedmess string, err error) {
 		return
 	}
 
-	//IV needs to be unique, but doesn't have to be secure.
-	//It's common to put it at the beginning of the ciphertext.
+	// IV needs to be unique, but doesn't have to be secure.
+	// It's common to put it at the beginning of the ciphertext.
 	iv := cipherText[:aes.BlockSize]
 	cipherText = cipherText[aes.BlockSize:]
 
