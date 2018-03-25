@@ -10,12 +10,13 @@ import (
 func main() {
 	e := echo.New()
 
-	e.GET("/", handle)
+	e.GET("/api/links/:id", getLink)
 
 	http.Handle("/", e)
 	appengine.Main()
 }
 
-func handle(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello, World!")
+func getLink(c echo.Context) error {
+	id := c.Param("id")
+	return c.String(http.StatusOK, "Hello, World! You are requesting "+id)
 }

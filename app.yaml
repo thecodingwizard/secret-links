@@ -2,7 +2,7 @@ runtime: go
 api_version: go1
 
 handlers:
-- url: /api/.*
+- url: /api|/api/.*
   script: _go_app
 
 skip_files:
