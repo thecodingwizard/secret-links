@@ -7,5 +7,5 @@ cd web
 yarn build
 cd ..
 
-gcloud app deploy
+gcloud app deploy -v [version number]
 ```
