@@ -1,4 +1,4 @@
-package main
+package server
 
 // Link holds information about a secret link
 type Link struct {
