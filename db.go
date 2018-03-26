@@ -40,3 +40,8 @@ func (db *LinksDatabase) getLinksWithTag(tag string, r *http.Request) (*[]Link, 
 
 	return &result, nil
 }
+
+func (db *LinksDatabase) linkExists(accessURL string, r *http.Request) (bool, error) {
+	response, err := db.getLinkWithURL(accessURL, r)
+	return response != nil, err
+}

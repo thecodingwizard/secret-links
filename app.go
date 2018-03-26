@@ -19,12 +19,24 @@ const CheckString = "check"
 func main() {
 	e := echo.New()
 
+	e.GET("/api/links/check/:accessURL", checkLink)
 	e.POST("/api/links/:query", getLink)
 	e.POST("/api/links", addLink)
 	e.GET("/api/links/:query", getLinksWithTag)
 
 	http.Handle("/", e)
 	appengine.Main()
+}
+
+func checkLink(c echo.Context) error {
+	url := c.Param("accessURL")
+	if exists, err := DB.linkExists(url, c.Request()); err != nil {
+		return c.String(http.StatusInternalServerError, err.Error())
+	} else if exists {
+		return c.JSON(http.StatusOK, true)
+	}
+
+	return c.JSON(http.StatusOK, false)
 }
 
 func getLink(c echo.Context) error {
@@ -50,7 +62,13 @@ func getLink(c echo.Context) error {
 func addLink(c echo.Context) error {
 	linkData := new(AddLinkData)
 	if err := c.Bind(linkData); err != nil {
-		return c.JSON(http.StatusBadRequest, "Invalid Data")
+		return c.String(http.StatusBadRequest, "Invalid Data")
+	}
+
+	if exists, err := DB.linkExists(linkData.AccessURL, c.Request()); err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	} else if exists {
+		return c.String(http.StatusConflict, "Access URL taken.")
 	}
 
 	link := &Link{
@@ -60,14 +78,14 @@ func addLink(c echo.Context) error {
 		Tag:       linkData.Tag,
 	}
 	if err := EncryptLink(link, linkData.Password); err != nil {
-		return c.JSON(http.StatusBadRequest, "Error during encryption")
+		return c.String(http.StatusBadRequest, "Error during encryption")
 	}
 
 	if _, err := DB.addLink(link, c.Request()); err != nil {
 		return c.JSON(http.StatusInternalServerError, err.Error())
 	}
 
-	return c.JSON(http.StatusOK, "OK")
+	return c.String(http.StatusOK, "OK")
 }
 
 func getLinksWithTag(c echo.Context) error {
