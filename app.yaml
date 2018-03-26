@@ -17,15 +17,11 @@ handlers:
 skip_files:
 - .git
 - .vscode
-- node_modules/*
-- web/*
-- \.git/*
-- \.babelrc
-- \.editorconfig
-- \.eslintrc
-- \.flowconfig
+- web/node_modules/*
+- web/public/*
+- web/src/*
+- web/package.json
+- web/README.md
+- web/yarn.lock
 - \.gitignore
-- karma\.conf\.js
-- package\.json
 - .*\.md
-- webpack\.config\.js
