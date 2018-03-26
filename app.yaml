@@ -2,9 +2,30 @@ runtime: go
 api_version: go1
 
 handlers:
-- url: /api|/api/.*
+- url: /api/(.+)$
   script: _go_app
+
+- url: /(.*\.(css|eot|gz|html|ico|js|map|png|svg|ttf|woff|woff2|json))
+  static_files: web/build/\1
+  upload: web/build/(.*\.(css|eot|gz|html|ico|js|map|png|svg|ttf|woff|woff2|json))
+
+- url: /.*
+  static_files: web/build/index.html
+  upload: web/build/index.html
+  secure: always
 
 skip_files:
 - .git
 - .vscode
+- node_modules/*
+- web/*
+- \.git/*
+- \.babelrc
+- \.editorconfig
+- \.eslintrc
+- \.flowconfig
+- \.gitignore
+- karma\.conf\.js
+- package\.json
+- .*\.md
+- webpack\.config\.js
