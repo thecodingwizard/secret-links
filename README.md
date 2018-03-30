@@ -22,7 +22,7 @@ cd ..
 gcloud app deploy -v [version number]
 
 // Local testing
-dev_appserver.py app.yaml
+dev_appserver.py gcp/app.yaml
 ```
 
 Note: `dev_appserver.py` uses python 2. Use `virtualenvwrapper`	to create a dedicated Python 2 environment for dev_appserver.py if you are running Python 3 on your machine.
