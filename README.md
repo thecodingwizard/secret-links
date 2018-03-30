@@ -1,4 +1,4 @@
-# Secret Links
+# Secret Links in Go
 
 ## Setup
 ```
@@ -19,6 +19,7 @@ cd web
 yarn build
 cd ..
 
+cd gcp
 gcloud app deploy -v [version number]
 
 // Local testing
