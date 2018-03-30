@@ -1,7 +1,24 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import * as linksActions from "../../actions/links.actions";
+
 class ViewLinkPage extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {};
+	}
+
+	static getDerivedStateFromProps(nextProps, prevState) {
+		if (nextProps.match.params.linkUrl) {
+			console.log(nextProps);
+		}
+
+		return null;
+	}
+
 	render() {
 		return (
 			<div>
@@ -14,4 +31,10 @@ class ViewLinkPage extends React.Component {
 	}
 }
 
-export default ViewLinkPage;
+function mapStateToProps(state, ownProps) {
+	return {
+		links: state.links
+	};
+}
+
+export default connect(mapStateToProps, { ...linksActions })(ViewLinkPage);
