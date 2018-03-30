@@ -2,7 +2,7 @@ runtime: go
 api_version: go1
 
 handlers:
-- url: /api/(.+)$
+- url: /api/.*
   script: _go_app
 
 - url: /(.*\.(css|eot|gz|html|ico|js|map|png|svg|ttf|woff|woff2|json))
