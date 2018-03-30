@@ -1,7 +1,8 @@
 import * as fromActions from "../actions";
 
 const initialState = {
-	link: "initial"
+	link: "initial",
+	linkUrl: null
 };
 
 const linksReducer = (state = initialState, action) => {
@@ -9,7 +10,8 @@ const linksReducer = (state = initialState, action) => {
 		case fromActions.GET_LINK: {
 			return {
 				...state,
-				link: "hello"
+				link: "hello",
+				linkUrl: action.accessUrl
 			};
 		}
 		default: {

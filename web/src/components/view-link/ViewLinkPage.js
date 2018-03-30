@@ -12,8 +12,9 @@ class ViewLinkPage extends React.Component {
 	}
 
 	static getDerivedStateFromProps(nextProps, prevState) {
-		if (nextProps.match.params.linkUrl) {
-			console.log(nextProps);
+		const linkUrl = nextProps.match.params.linkUrl;
+		if (linkUrl && linkUrl !== nextProps.links.linkUrl) {
+			nextProps.getLink(linkUrl);
 		}
 
 		return null;
@@ -24,7 +25,7 @@ class ViewLinkPage extends React.Component {
 			<div>
 				View Link Page
 				<br />
-				{this.props.match.params.linkUrl}
+				{this.props.links.linkUrl}
 				<Link to="/links/testing">Testing</Link>
 			</div>
 		);
