@@ -45,7 +45,7 @@ class NewLinkForm extends React.Component {
 	render() {
 		const { classes } = this.props;
 		return (
-			<form onSubmit={this.onSubmit}>
+			<form onSubmit={this.onSubmit} autocomplete="off">
 				<TextField
 					id="name"
 					label="Name"
