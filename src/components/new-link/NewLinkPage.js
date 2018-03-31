@@ -24,23 +24,18 @@ class NewLinkPage extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			loading: false
-		};
+		this.state = {};
 
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
 	onSubmit(data) {
-		this.setState({
-			loading: true
-		});
-		this.props.dispatch(createNewLink(data));
+		this.props.createNewLink(data);
 	}
 
 	render() {
-		const { classes } = this.props;
-		const { loading } = this.state;
+		const { classes, loading } = this.props;
+		console.log(this.state, this.props);
 		return (
 			<div>
 				<Fade
@@ -62,4 +57,12 @@ class NewLinkPage extends React.Component {
 	}
 }
 
-export default connect()(withStyles(styles)(NewLinkPage));
+const mapStateToProps = (state, ownProps) => ({
+	loading: state.links.loading
+});
+ 
+const mapDispatchToProps = (dispatch, ownProps) => ({
+	createNewLink: data => dispatch(createNewLink(data))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(NewLinkPage));
