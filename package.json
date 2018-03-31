@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "crypto-js": "^3.1.9-1",
     "material-ui": "^1.0.0-beta.39",
     "material-ui-icons": "^1.0.0-beta.36",
     "node-sass-chokidar": "^1.2.2",

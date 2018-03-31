@@ -1,4 +1,5 @@
 import "whatwg-fetch";
+import * as CryptoJS from "crypto-js";
 
 const SERVER = "https://secretlinksapi.pandadevgroup.com";
 
@@ -13,7 +14,11 @@ export function fetchLink(accessUrl, password) {
 }
 
 export function createNewLink(data) {
-	let encryptedData = "hi";
+	const { linkUrl, accessUrl, name, description } = data;
+	const link = {
+		link: linkUrl, accessUrl, name, description
+	};
+	let encryptedData = CryptoJS.AES.encrypt(JSON.stringify(link), data.password);
 
 	return fetch(`${SERVER}/links`, {
 		method: "POST",
@@ -21,7 +26,7 @@ export function createNewLink(data) {
 			"Content-Type": "application/json"
 		},
 		body: JSON.stringify({
-			data: encryptedData,
+			data: encryptedData.toString(),
 			accessUrl: data.accessUrl
 		})
 	}).then(response => response.json());
