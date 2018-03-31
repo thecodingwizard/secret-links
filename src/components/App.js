@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -9,6 +9,7 @@ import SearchIcon from "material-ui-icons/Search";
 
 import HomePage from "./home/HomePage";
 import ViewLinkPage from "./view-link/ViewLinkPage";
+import NewLinkPage from "./new-link/NewLinkPage";
 
 class App extends React.Component {
 	render() {
@@ -30,8 +31,11 @@ class App extends React.Component {
 					</AppBar>
 				</header>
 				<main>
-					<Route path="/" exact component={HomePage} />
-					<Route path="/links/:linkUrl" component={ViewLinkPage} />
+					<Switch>
+						<Route path="/" exact component={HomePage} />
+						<Route path="/links/new" component={NewLinkPage} />
+						<Route path="/links/:linkUrl" component={ViewLinkPage} />
+					</Switch>
 				</main>
 			</div>
 		);

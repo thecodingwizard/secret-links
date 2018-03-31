@@ -23,9 +23,11 @@ class HomePage extends React.Component {
 				<br/>
 				<Link to="/links/pandadevgroup">Example Link</Link>
 
-				<Button variant="fab" color="secondary" aria-label="add" className={classes.button}>
-					<AddIcon />
-				</Button>
+				<Link to="/links/new">
+					<Button variant="fab" color="secondary" aria-label="add" className={classes.button}>
+						<AddIcon />
+					</Button>
+				</Link>
 			</div>
 		);
 	}
