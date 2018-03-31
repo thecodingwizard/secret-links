@@ -13,6 +13,8 @@ class ViewLinkPage extends React.Component {
 			accessUrl: null,
 			link: null
 		};
+
+		this.handlePassword = this.handlePassword.bind(this);
 	}
 
 	static getDerivedStateFromProps(nextProps, prevState) {
@@ -25,10 +27,14 @@ class ViewLinkPage extends React.Component {
 		return null;
 	}
 
+	handlePassword(password) {
+		console.log(password);
+	}
+
 	render() {
 		return (
 			<div>
-				{!this.props.link && <EnterPassword />}
+				{!this.props.link && <EnterPassword onSubmit={this.handlePassword}/>}
 			</div>
 		);
 	}
