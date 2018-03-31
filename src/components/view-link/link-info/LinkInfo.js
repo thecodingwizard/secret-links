@@ -10,6 +10,9 @@ const styles = {
 	},
 	center: {
 		textAlign: "center"
+	},
+	noLinkStyling: {
+		textDecoration: "none"
 	}
 };
 
@@ -29,7 +32,7 @@ class LinkInfo extends React.Component {
 					</p>
 					{link.description && <p>{link.description}</p>}
 				</Typography>
-				<a href={link.link}>
+				<a href={link.link} className={classes.noLinkStyling}>
 					<Button variant="raised" color="primary" fullWidth>
 						Visit Link
 					</Button>
