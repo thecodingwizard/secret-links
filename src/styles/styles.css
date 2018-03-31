@@ -10,6 +10,3 @@ html, body {
   .toolbar__title a {
     text-decoration: none;
     color: inherit; }
-
-.page--padding {
-  padding: 1.5rem 1rem; }

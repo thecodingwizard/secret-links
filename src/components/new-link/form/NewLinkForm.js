@@ -5,8 +5,7 @@ import Button from "material-ui/Button";
 
 const styles = {
 	form: {
-		maxWidth: "30rem",
-		margin: "0 auto"
+		position: "relative"
 	},
 	button: {
 		width: "100%",
@@ -19,11 +18,11 @@ class NewLinkForm extends React.Component {
 		super(props);
 
 		this.state = {
-			name: "",
-			link: "",
-			description: "",
-			accessUrl: "",
-			password: ""
+			name: "Google",
+			link: "https://www.google.com/",
+			description: "Google",
+			accessUrl: "google",
+			password: "test"
 		};
 
 		this.onSubmit = this.onSubmit.bind(this);
@@ -46,7 +45,7 @@ class NewLinkForm extends React.Component {
 	render() {
 		const { classes } = this.props;
 		return (
-			<form className={classes.form} onSubmit={this.onSubmit}>
+			<form onSubmit={this.onSubmit}>
 				<TextField
 					id="name"
 					label="Name"
@@ -63,6 +62,7 @@ class NewLinkForm extends React.Component {
 					fullWidth
 					required
 					helperText="Encrypted"
+					type="url"
 					margin="dense"/>
 				<TextField
 					id="description"
@@ -91,7 +91,12 @@ class NewLinkForm extends React.Component {
 					helperText="Never Stored"
 					type="password"
 					margin="dense"/>
-				<Button variant="raised" color="primary" className={classes.button} type="submit">
+				<Button
+					variant="raised"
+					color="primary"
+					className={classes.button}
+					type="submit"
+					disabled={this.props.loading}>
 					Submit
 				</Button>
 			</form>
