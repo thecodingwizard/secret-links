@@ -10,6 +10,7 @@ import SearchIcon from "material-ui-icons/Search";
 import HomePage from "./home/HomePage";
 import ViewLinkPage from "./view-link/ViewLinkPage";
 import NewLinkPage from "./new-link/NewLinkPage";
+import SearchPage from "./search/SearchPage";
 
 class App extends React.Component {
 	render() {
@@ -25,7 +26,10 @@ class App extends React.Component {
 								<Link to="/">Secret Links</Link>
 							</Typography>
 							<IconButton color="inherit" aria-label="Search">
-								<SearchIcon />
+								<Link to="/search"
+									style={{ textDecoration: 'none', color: "inherit", height: 24 }}>
+									<SearchIcon />
+								</Link>
 							</IconButton>
 						</Toolbar>
 					</AppBar>
@@ -33,6 +37,7 @@ class App extends React.Component {
 				<main>
 					<Switch>
 						<Route path="/" exact component={HomePage} />
+						<Route path="/search" component={SearchPage} />
 						<Route path="/links/new" component={NewLinkPage} />
 						<Route path="/links/:accessUrl" component={ViewLinkPage} />
 					</Switch>
