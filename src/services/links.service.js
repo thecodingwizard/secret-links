@@ -2,7 +2,7 @@ import "whatwg-fetch";
 
 const SERVER = "https://secretlinksapi.pandadevgroup.com";
 
-export function fetchLink(accessUrl, password = "testing") {
+export function fetchLink(accessUrl, password) {
 	return fetch(`${SERVER}/links/${accessUrl}`, {
 		method: "POST",
 		headers: {

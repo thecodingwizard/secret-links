@@ -21,14 +21,13 @@ class ViewLinkPage extends React.Component {
 		const linkUrl = nextProps.match.params.linkUrl;
 		if (linkUrl && linkUrl !== nextProps.links.linkUrl) {
 			prevState.accessUrl = linkUrl;
-			// nextProps.getLink(linkUrl);
 		}
 
 		return null;
 	}
 
 	handlePassword(password) {
-		console.log(password);
+		this.props.getLink(this.state.accessUrl, password);
 	}
 
 	render() {
