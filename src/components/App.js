@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -22,7 +22,7 @@ class App extends React.Component {
 								<MenuIcon />
 							</IconButton>
 							<Typography variant="title" color="inherit" className="toolbar__title">
-								Secret Links
+								<Link to="/">Secret Links</Link>
 							</Typography>
 							<IconButton color="inherit" aria-label="Search">
 								<SearchIcon />

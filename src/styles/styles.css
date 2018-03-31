@@ -7,3 +7,6 @@ html, body {
 
 .toolbar__title {
   flex: 1; }
+  .toolbar__title a {
+    text-decoration: none;
+    color: inherit; }
