@@ -18,11 +18,11 @@ class NewLinkForm extends React.Component {
 		super(props);
 
 		this.state = {
-			name: "Google",
-			link: "https://www.google.com/",
-			description: "Google",
-			accessUrl: "google",
-			password: "test"
+			name: "",
+			link: "",
+			description: "",
+			accessUrl: "",
+			password: ""
 		};
 
 		this.onSubmit = this.onSubmit.bind(this);
