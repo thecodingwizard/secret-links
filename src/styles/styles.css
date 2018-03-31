@@ -1,0 +1,9 @@
+html, body {
+  margin: 0; }
+
+.toolbar__menu {
+  margin-left: -12px !important;
+  margin-right: 20px !important; }
+
+.toolbar__title {
+  flex: 1; }
