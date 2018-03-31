@@ -14,11 +14,11 @@ export function fetchLink(accessUrl, password) {
 }
 
 export function createNewLink(data) {
-	const { linkUrl, accessUrl, name, description } = data;
-	const link = {
-		link: linkUrl, accessUrl, name, description
+	const { link, accessUrl, name, description } = data;
+	const linkObj = {
+		link, accessUrl, name, description
 	};
-	let encryptedData = CryptoJS.AES.encrypt(JSON.stringify(link), data.password);
+	let encryptedData = CryptoJS.AES.encrypt(JSON.stringify(linkObj), data.password);
 
 	return fetch(`${SERVER}/links`, {
 		method: "POST",
