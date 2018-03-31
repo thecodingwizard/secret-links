@@ -1,6 +1,7 @@
 import React from "react";
 import { withStyles } from 'material-ui/styles';
 import Typography from "material-ui/Typography";
+import Button from "material-ui/Button";
 
 const styles = {
 	container: {
@@ -28,6 +29,11 @@ class LinkInfo extends React.Component {
 					</p>
 					{link.description && <p>{link.description}</p>}
 				</Typography>
+				<a href={link.link}>
+					<Button variant="raised" color="primary" fullWidth>
+						Visit Link
+					</Button>
+				</a>
 			</div>
 		);
 	}
