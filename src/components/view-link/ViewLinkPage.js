@@ -4,6 +4,7 @@ import Fade from 'material-ui/transitions/Fade';
 import { LinearProgress } from "material-ui/Progress";
 
 import EnterPassword from "../common/enter-password/EnterPassword"
+import LinkInfo from "./link-info/LinkInfo";
 
 import * as linksActions from "../../actions/links.actions";
 
@@ -48,7 +49,11 @@ class ViewLinkPage extends React.Component {
 						!this.props.link &&
 						<EnterPassword onSubmit={this.handlePassword}
 							accessUrl={this.state.accessUrl}
-							disabled={loading}/>
+							disabled={loading} />
+					}
+					{
+						this.props.link &&
+						<LinkInfo link={this.props.link} />
 					}
 				</div>
 			</div>
