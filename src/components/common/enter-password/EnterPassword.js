@@ -12,7 +12,7 @@ export default class EnterPassword extends React.Component {
 			password: ""
 		};
 
-		this.handleClick = this.handleClick.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
 	}
 
 	handleChange = name => event => {
@@ -21,14 +21,14 @@ export default class EnterPassword extends React.Component {
 		});
 	};
 
-	handleClick(e) {
+	onSubmit(e) {
 		e.preventDefault();
 		this.props.onSubmit(this.state.password);
 	}
 
 	render() {
 		return (
-			<form className="enter-password">
+			<form className="enter-password" onSubmit={this.onSubmit}>
 				<Typography variant="headline" className="enter-password__title">
 					Enter Password
 				</Typography>
@@ -43,7 +43,7 @@ export default class EnterPassword extends React.Component {
 					required
 					margin="normal"/>
 				<div className="enter-password__submit">
-					<Button variant="raised" size="large" color="primary" onClick={this.handleClick} type="submit">
+					<Button variant="raised" size="large" color="primary" type="submit">
 						Submit
 					</Button>
 				</div>
