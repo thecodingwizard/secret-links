@@ -1,7 +1,12 @@
 import * as fromActions from "../actions";
 
 const initialState = {
-	link: null,
+	link: {
+		"link": "https://www.google.com/",
+		"accessUrl": "google",
+		"name": "Google",
+		"description": "Google"
+	  },
 	accessUrl: null,
 	loading: false,
 	error: null
