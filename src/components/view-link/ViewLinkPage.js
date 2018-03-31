@@ -8,8 +8,6 @@ import LinkInfo from "./link-info/LinkInfo";
 
 import * as linksActions from "../../actions/links.actions";
 
-import { Link } from "react-router-dom";
-
 class ViewLinkPage extends React.Component {
 	constructor(props) {
 		super(props);
@@ -59,7 +57,6 @@ class ViewLinkPage extends React.Component {
 						this.props.link &&
 						<LinkInfo link={this.props.link} />
 					}
-					<Link to="/links/test">Test</Link>
 				</div>
 			</div>
 		);
