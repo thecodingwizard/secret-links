@@ -14,7 +14,7 @@ class NewLinkPage extends React.Component {
 	render() {
 		const { classes } = this.props;
 		return (
-			<div>
+			<div className="page--padding">
 				<Typography variant="headline" className={classes.title}>
 					Create New Link
 				</Typography>
