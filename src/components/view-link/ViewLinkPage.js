@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import Fade from 'material-ui/transitions/Fade';
+import { LinearProgress } from "material-ui/Progress";
 
 import EnterPassword from "../common/enter-password/EnterPassword"
 
@@ -18,9 +20,9 @@ class ViewLinkPage extends React.Component {
 	}
 
 	static getDerivedStateFromProps(nextProps, prevState) {
-		const linkUrl = nextProps.match.params.linkUrl;
-		if (linkUrl && linkUrl !== nextProps.links.linkUrl) {
-			prevState.accessUrl = linkUrl;
+		const accessUrl = nextProps.match.params.accessUrl;
+		if (accessUrl && accessUrl !== nextProps.accessUrl) {
+			prevState.accessUrl = accessUrl;
 		}
 
 		return null;
@@ -31,13 +33,24 @@ class ViewLinkPage extends React.Component {
 	}
 
 	render() {
+		const { loading } = this.props;
 		return (
-			<div className="page--padding">
-				{
-					!this.props.link &&
-					<EnterPassword onSubmit={this.handlePassword}
-						accessUrl={this.state.accessUrl}/>
-				}
+			<div>
+				<Fade
+					in={loading}
+					style={{
+						transitionDelay: loading ? '800ms' : '0ms',
+					}}>
+					<LinearProgress color="secondary" />
+				</Fade>
+				<div className="page--padding">
+					{
+						!this.props.link &&
+						<EnterPassword onSubmit={this.handlePassword}
+							accessUrl={this.state.accessUrl}
+							disabled={loading}/>
+					}
+				</div>
 			</div>
 		);
 	}
@@ -45,7 +58,10 @@ class ViewLinkPage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
 	return {
-		links: state.links
+		accessUrl: state.links.accessUrl,
+		loading: state.links.loading,
+		error: state.links.error,
+		link: state.links.link
 	};
 }
 

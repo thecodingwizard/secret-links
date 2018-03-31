@@ -46,7 +46,7 @@ export default class EnterPassword extends React.Component {
 					required
 					margin="normal"/>
 				<div className="enter-password__submit">
-					<Button variant="raised" size="large" color="primary" type="submit" fullWidth>
+					<Button variant="raised" size="large" color="primary" type="submit" fullWidth disabled={this.props.disabled}>
 						Submit
 					</Button>
 				</div>

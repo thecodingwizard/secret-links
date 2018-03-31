@@ -34,7 +34,7 @@ class App extends React.Component {
 					<Switch>
 						<Route path="/" exact component={HomePage} />
 						<Route path="/links/new" component={NewLinkPage} />
-						<Route path="/links/:linkUrl" component={ViewLinkPage} />
+						<Route path="/links/:accessUrl" component={ViewLinkPage} />
 					</Switch>
 				</main>
 			</div>
