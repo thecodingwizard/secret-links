@@ -35,7 +35,6 @@ class NewLinkPage extends React.Component {
 
 	render() {
 		const { classes, loading } = this.props;
-		console.log(this.state, this.props);
 		return (
 			<div>
 				<Fade

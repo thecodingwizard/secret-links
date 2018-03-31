@@ -9,9 +9,9 @@ function* fetchLink(action) {
 			// Message is an error message
 			throw link;
 		}
-		yield put({ type: "GET_LINK_SUCCESS", link });
+		yield put(linksActions.getLinkSuccess(link));
 	} catch (e) {
-		yield put({ type: "GET_LINK_FAIL", message: e.message });
+		yield put(linksActions.getLinkFail(e.message));
 	}
 }
 
@@ -19,9 +19,9 @@ function* createNewLink(action) {
 	try {
 		const response = yield call(linksService.createNewLink, action.data);
 		if (response.message !== "OK") throw response;
-		yield put({ type: "CREATE_NEW_LINK_SUCCESS" });
+		yield put(linksActions.createNewLinkSuccess());
 	} catch (e) {
-		yield put({ type: "CREATE_NEW_LINK_FAIL", message: e.message });
+		yield put(linksActions.createNewLinkFail(e.message));
 	}
 }
 
