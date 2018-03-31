@@ -19,7 +19,7 @@ function* createNewLink(action) {
 	try {
 		const response = yield call(linksService.createNewLink, action.data);
 		if (response.message !== "OK") throw response;
-		yield put(linksActions.createNewLinkSuccess());
+		yield put(linksActions.createNewLinkSuccess(action.data.accessUrl));
 	} catch (e) {
 		yield put(linksActions.createNewLinkFail(e.message));
 	}

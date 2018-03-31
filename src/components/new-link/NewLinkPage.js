@@ -29,6 +29,14 @@ class NewLinkPage extends React.Component {
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
+	static getDerivedStateFromProps(nextProps, prevState) {
+		if (!nextProps.loading && !nextProps.error && nextProps.accessUrl) {
+			nextProps.history.push(`/links/${nextProps.accessUrl}`);
+		}
+
+		return null;
+	}
+
 	onSubmit(data) {
 		this.props.createNewLink(data);
 	}
@@ -57,7 +65,9 @@ class NewLinkPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-	loading: state.links.loading
+	loading: state.links.loading,
+	error: state.links.error,
+	accessUrl: state.links.accessUrl
 });
  
 const mapDispatchToProps = (dispatch, ownProps) => ({

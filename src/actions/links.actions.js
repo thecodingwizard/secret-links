@@ -19,8 +19,8 @@ export const CREATE_NEW_LINK_FAIL = "[Links] Create New Link Fail";
 export function createNewLink(data) {
 	return { type: CREATE_NEW_LINK, data };
 }
-export function createNewLinkSuccess() {
-	return { type: CREATE_NEW_LINK_SUCCESS };
+export function createNewLinkSuccess(accessUrl) {
+	return { type: CREATE_NEW_LINK_SUCCESS, accessUrl };
 }
 export function createNewLinkFail(message) {
 	return { type: CREATE_NEW_LINK_FAIL, message };

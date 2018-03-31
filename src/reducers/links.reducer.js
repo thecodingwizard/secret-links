@@ -2,9 +2,9 @@ import * as fromActions from "../actions";
 
 const initialState = {
 	link: "initial",
-	linkUrl: null,
+	accessUrl: null,
 	loading: false,
-	error: ""
+	error: null
 };
 
 const linksReducer = (state = initialState, action) => {
@@ -19,7 +19,9 @@ const linksReducer = (state = initialState, action) => {
 		case fromActions.CREATE_NEW_LINK_SUCCESS: {
 			return {
 				...state,
-				loading: false
+				loading: false,
+				accessUrl: action.accessUrl,
+				error: null
 			};
 		}
 		case fromActions.CREATE_NEW_LINK_FAIL: {
@@ -33,7 +35,8 @@ const linksReducer = (state = initialState, action) => {
 			return {
 				...state,
 				loading: false,
-				link: action.link
+				link: action.link,
+				error: null
 			}
 		}
 		case fromActions.GET_LINK_FAIL: {
