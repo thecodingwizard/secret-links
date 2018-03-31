@@ -8,13 +8,14 @@ import LinkInfo from "./link-info/LinkInfo";
 
 import * as linksActions from "../../actions/links.actions";
 
+import { Link } from "react-router-dom";
+
 class ViewLinkPage extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			accessUrl: null,
-			link: null
+			accessUrl: null
 		};
 
 		this.handlePassword = this.handlePassword.bind(this);
@@ -22,11 +23,14 @@ class ViewLinkPage extends React.Component {
 
 	static getDerivedStateFromProps(nextProps, prevState) {
 		const accessUrl = nextProps.match.params.accessUrl;
-		if (accessUrl && accessUrl !== nextProps.accessUrl) {
-			prevState.accessUrl = accessUrl;
+		if (accessUrl && nextProps.link && accessUrl !== nextProps.link.accessUrl) {
+			// Access URL changed
+			nextProps.resetLink();
 		}
 
-		return null;
+		return {
+			accessUrl
+		};
 	}
 
 	handlePassword(password) {
@@ -55,6 +59,7 @@ class ViewLinkPage extends React.Component {
 						this.props.link &&
 						<LinkInfo link={this.props.link} />
 					}
+					<Link to="/links/test">Test</Link>
 				</div>
 			</div>
 		);
@@ -63,7 +68,6 @@ class ViewLinkPage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
 	return {
-		accessUrl: state.links.accessUrl,
 		loading: state.links.loading,
 		error: state.links.error,
 		link: state.links.link

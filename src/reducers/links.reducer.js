@@ -7,7 +7,6 @@ const initialState = {
 		"name": "Google",
 		"description": "Google"
 	  },
-	accessUrl: null,
 	loading: false,
 	error: null
 };
@@ -50,6 +49,12 @@ const linksReducer = (state = initialState, action) => {
 				...state,
 				loading: false,
 				error: action.message,
+				link: null
+			};
+		}
+		case fromActions.RESET_LINK: {
+			return {
+				...state,
 				link: null
 			};
 		}

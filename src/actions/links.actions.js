@@ -25,3 +25,9 @@ export function createNewLinkSuccess(accessUrl) {
 export function createNewLinkFail(message) {
 	return { type: CREATE_NEW_LINK_FAIL, message };
 }
+
+export const RESET_LINK = "[Links] Reset Link";
+
+export function resetLink() {
+	return { type: RESET_LINK };
+}
