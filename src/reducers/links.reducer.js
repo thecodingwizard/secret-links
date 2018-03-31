@@ -1,7 +1,7 @@
 import * as fromActions from "../actions";
 
 const initialState = {
-	link: "initial",
+	link: null,
 	accessUrl: null,
 	loading: false,
 	error: null
@@ -13,7 +13,8 @@ const linksReducer = (state = initialState, action) => {
 		case fromActions.GET_LINK: {
 			return {
 				...state,
-				loading: true
+				loading: true,
+				link: null
 			};
 		}
 		case fromActions.CREATE_NEW_LINK_SUCCESS: {
@@ -43,7 +44,8 @@ const linksReducer = (state = initialState, action) => {
 			return {
 				...state,
 				loading: false,
-				error: action.message
+				error: action.message,
+				link: null
 			};
 		}
 		default: {

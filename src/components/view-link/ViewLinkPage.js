@@ -32,8 +32,12 @@ class ViewLinkPage extends React.Component {
 
 	render() {
 		return (
-			<div>
-				{!this.props.link && <EnterPassword onSubmit={this.handlePassword}/>}
+			<div className="page--padding">
+				{
+					!this.props.link &&
+					<EnterPassword onSubmit={this.handlePassword}
+						accessUrl={this.state.accessUrl}/>
+				}
 			</div>
 		);
 	}

@@ -32,6 +32,9 @@ export default class EnterPassword extends React.Component {
 				<Typography variant="headline" className="enter-password__title">
 					Enter Password
 				</Typography>
+				<Typography variant="subheading" className="enter-password__subtitle">
+					Requesting /{this.props.accessUrl}
+				</Typography>
 				<TextField
 					id="password"
 					label="Password"
@@ -43,7 +46,7 @@ export default class EnterPassword extends React.Component {
 					required
 					margin="normal"/>
 				<div className="enter-password__submit">
-					<Button variant="raised" size="large" color="primary" type="submit">
+					<Button variant="raised" size="large" color="primary" type="submit" fullWidth>
 						Submit
 					</Button>
 				</div>
