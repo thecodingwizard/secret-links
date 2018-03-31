@@ -1,9 +1,11 @@
 import React from "react";
+import { connect } from 'react-redux'
 import Typography from "material-ui/Typography";
 import Fade from 'material-ui/transitions/Fade';
 import { LinearProgress } from "material-ui/Progress";
 import { withStyles } from 'material-ui/styles';
 import NewLinkForm from "./form/NewLinkForm";
+import { createNewLink } from "../../actions";
 
 const styles = {
 	container: {
@@ -30,10 +32,10 @@ class NewLinkPage extends React.Component {
 	}
 
 	onSubmit(data) {
-		console.log(data);
 		this.setState({
 			loading: true
 		});
+		this.props.dispatch(createNewLink(data));
 	}
 
 	render() {
@@ -60,4 +62,4 @@ class NewLinkPage extends React.Component {
 	}
 }
 
-export default withStyles(styles)(NewLinkPage);
+export default connect()(withStyles(styles)(NewLinkPage));
