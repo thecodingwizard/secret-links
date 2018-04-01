@@ -13,6 +13,10 @@ const styles = {
 	},
 	noLinkStyling: {
 		textDecoration: "none"
+	},
+	description: {
+		textAlign: "center",
+		margin: "1rem 0"
 	}
 };
 
@@ -24,14 +28,12 @@ class LinkInfo extends React.Component {
 				<Typography variant="headline" className={classes.center}>
 					{link.name || "[No Title]"}
 				</Typography>
-				<Typography>
-					<p className={classes.center}>
-						Link: <a href={link.link}>{link.link}</a>
-						<br/>
-						Access URL: <a href={`/links/${link.accessUrl}`}>{`/links/${link.accessUrl}`}</a>
-					</p>
-					{link.description && <p>{link.description}</p>}
+				<Typography className={classes.center}>
+					Link: <a href={link.link}>{link.link}</a>
+					<br/>
+					Access URL: <a href={`/links/${link.accessUrl}`}>{`/links/${link.accessUrl}`}</a>
 				</Typography>
+				{link.description && <Typography className={classes.description}>{link.description}</Typography>}
 				<a href={link.link} className={classes.noLinkStyling}>
 					<Button variant="raised" color="primary" fullWidth>
 						Visit Link

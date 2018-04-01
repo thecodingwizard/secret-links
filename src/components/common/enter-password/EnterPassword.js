@@ -28,7 +28,7 @@ export default class EnterPassword extends React.Component {
 
 	render() {
 		return (
-			<form className="enter-password" onSubmit={this.onSubmit} autocomplete="off">
+			<form className="enter-password" onSubmit={this.onSubmit} autoComplete="off">
 				<Typography variant="headline" className="enter-password__title">
 					Enter Password
 				</Typography>
