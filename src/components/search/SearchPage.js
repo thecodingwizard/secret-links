@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from 'react-redux'
 import Typography from "material-ui/Typography";
 import Fade from 'material-ui/transitions/Fade';
 import TextField from "material-ui/TextField";
@@ -80,12 +79,4 @@ class SearchPage extends React.Component {
 	}
 }
 
-const mapStateToProps = (state, ownProps) => ({
-	loading: state.links.loading,
-	error: state.links.error
-});
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SearchPage));
+export default withStyles(styles)(SearchPage);
