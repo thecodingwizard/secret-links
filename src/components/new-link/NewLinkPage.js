@@ -42,7 +42,7 @@ class NewLinkPage extends React.Component {
 	}
 
 	render() {
-		const { classes, loading } = this.props;
+		const { classes, loading, error } = this.props;
 		return (
 			<div>
 				<Fade
@@ -56,6 +56,12 @@ class NewLinkPage extends React.Component {
 					<Typography variant="headline" className={classes.title}>
 						Create New Link
 					</Typography>
+					{
+						error &&
+						<Typography variant="subheading" style={{ color: "red" }}>
+							Error: {error}
+						</Typography>
+					}
 
 					<NewLinkForm onSubmit={this.onSubmit} loading={loading}/>
 				</div>

@@ -3,7 +3,8 @@ import * as fromActions from "../actions";
 const initialState = {
 	link: null,
 	loading: false,
-	error: null
+	error: null,
+	accessUrl: null
 };
 
 const linksReducer = (state = initialState, action) => {
@@ -51,7 +52,9 @@ const linksReducer = (state = initialState, action) => {
 			return {
 				...state,
 				link: null,
-				error: null
+				error: null,
+				loading: false,
+				accessUrl: null
 			};
 		}
 		default: {
