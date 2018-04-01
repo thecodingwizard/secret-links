@@ -7,8 +7,6 @@ import AddIcon from "material-ui-icons/Add";
 
 const styles = theme => ({
 	container: {
-		maxWidth: "30rem",
-		margin: "0 auto",
 		padding: "1.5rem 1rem",
 		textAlign: "center",
 	},
@@ -44,6 +42,7 @@ class HomePage extends React.Component {
 					</Typography>
 					<Typography className={classes.text}>
 						A simple Progressive Web App that lets you encrypt links.
+						Built with React, Material UI, NodeJS, and MongoDB.
 					</Typography>
 					<Typography className={classes.text}>
 						Try it out! Start by clicking the "+" button on the bottom right corner.
