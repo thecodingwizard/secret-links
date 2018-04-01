@@ -35,6 +35,12 @@ export default class EnterPassword extends React.Component {
 				<Typography variant="subheading" className="enter-password__subtitle">
 					Requesting /{this.props.accessUrl}
 				</Typography>
+				{
+					this.props.error &&
+					<Typography variant="subheading" className="enter-password__error">
+						Error: {this.props.error}
+					</Typography>
+				}
 				<TextField
 					id="password"
 					label="Password"

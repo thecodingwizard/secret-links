@@ -50,7 +50,8 @@ const linksReducer = (state = initialState, action) => {
 		case fromActions.RESET_LINK: {
 			return {
 				...state,
-				link: null
+				link: null,
+				error: null
 			};
 		}
 		default: {

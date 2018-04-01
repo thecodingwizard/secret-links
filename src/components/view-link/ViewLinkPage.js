@@ -40,7 +40,7 @@ class ViewLinkPage extends React.Component {
 	}
 
 	render() {
-		const { loading } = this.props;
+		const { loading, error } = this.props;
 		return (
 			<div>
 				<Fade
@@ -55,6 +55,7 @@ class ViewLinkPage extends React.Component {
 						!this.props.link &&
 						<EnterPassword onSubmit={this.handlePassword}
 							accessUrl={this.state.accessUrl}
+							error={error}
 							disabled={loading} />
 					}
 					{
