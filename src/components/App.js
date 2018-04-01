@@ -25,12 +25,12 @@ class App extends React.Component {
 							<Typography variant="title" color="inherit" className="toolbar__title">
 								<Link to="/">Secret Links</Link>
 							</Typography>
-							<IconButton color="inherit" aria-label="Search">
-								<Link to="/search"
-									style={{ textDecoration: 'none', color: "inherit", height: 24 }}>
+							<Link to="/search"
+								style={{ textDecoration: 'none', color: "inherit" }}>
+								<IconButton color="inherit" aria-label="Search">
 									<SearchIcon />
-								</Link>
-							</IconButton>
+								</IconButton>
+							</Link>
 						</Toolbar>
 					</AppBar>
 				</header>

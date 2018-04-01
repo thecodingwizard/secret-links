@@ -71,7 +71,7 @@ class SearchPage extends React.Component {
 						margin="normal"
 						fullWidth />
 					
-					<Button variant="raised" color="primary" className={classes.button}>
+					<Button variant="raised" color="primary" className={classes.button} type="submit">
 						Go
 					</Button>
 				</form>
