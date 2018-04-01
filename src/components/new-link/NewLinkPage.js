@@ -81,7 +81,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
  
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	createNewLink: data => dispatch(createNewLink(data))
+	createNewLink: data => dispatch(createNewLink(data)),
+	resetLink: () => dispatch(resetLink())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(NewLinkPage));
