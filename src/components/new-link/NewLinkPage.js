@@ -37,6 +37,10 @@ class NewLinkPage extends React.Component {
 		return null;
 	}
 
+	componentWillUnmount() {
+		this.props.resetLink();
+	}
+
 	onSubmit(data) {
 		this.props.createNewLink(data);
 	}
