@@ -35,6 +35,10 @@ class ViewLinkPage extends React.Component {
 		this.props.getLink(this.state.accessUrl, password);
 	}
 
+	componentWillUnmount() {
+		this.props.resetLink();
+	}
+
 	render() {
 		const { loading } = this.props;
 		return (
