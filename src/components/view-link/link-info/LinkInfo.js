@@ -11,8 +11,10 @@ const styles = {
 	center: {
 		textAlign: "center"
 	},
-	noLinkStyling: {
-		textDecoration: "none"
+	visitLink: {
+		textDecoration: "none",
+		marginTop: "1rem",
+		display: "block"
 	},
 	description: {
 		textAlign: "center",
@@ -34,7 +36,7 @@ class LinkInfo extends React.Component {
 					Access URL: <a href={`/links/${link.accessUrl}`}>{`/links/${link.accessUrl}`}</a>
 				</Typography>
 				{link.description && <Typography className={classes.description}>{link.description}</Typography>}
-				<a href={link.link} className={classes.noLinkStyling}>
+				<a href={link.link} className={classes.visitLink}>
 					<Button variant="raised" color="primary" fullWidth>
 						Visit Link
 					</Button>
