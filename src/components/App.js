@@ -20,6 +20,10 @@ import SearchPage from "./search/SearchPage";
 const styles = {
 	list: {
 		width: 300,
+	},
+	resetLink: {
+		color: "inherit",
+		textDecoration: "none"
 	}
 };
 
@@ -71,24 +75,30 @@ class App extends React.Component {
 						onKeyDown={this.toggleDrawer(false)}>
 						<div className={classes.list}>
 							<List>
-								<ListItem button>
-									<ListItemIcon>
-										<HomeIcon />
-									</ListItemIcon>
-									<ListItemText primary="Home" />
-								</ListItem>
-								<ListItem button>
-									<ListItemIcon>
-										<SearchIcon />
-									</ListItemIcon>
-									<ListItemText primary="Search" />
-								</ListItem>
-								<ListItem button>
-									<ListItemIcon>
-										<AddIcon />
-									</ListItemIcon>
-									<ListItemText primary="Create New Link" />
-								</ListItem>
+								<Link to="/" className={classes.resetLink}>
+									<ListItem button>
+										<ListItemIcon>
+											<HomeIcon />
+										</ListItemIcon>
+										<ListItemText primary="Home" />
+									</ListItem>
+								</Link>
+								<Link to="/search" className={classes.resetLink}>
+									<ListItem button>
+										<ListItemIcon>
+											<SearchIcon />
+										</ListItemIcon>
+										<ListItemText primary="Search" />
+									</ListItem>
+								</Link>
+								<Link to="/links/new" className={classes.resetLink}>
+									<ListItem button>
+										<ListItemIcon>
+											<AddIcon />
+										</ListItemIcon>
+										<ListItemText primary="Create New Link" />
+									</ListItem>
+								</Link>
 							</List>
 						</div>
 					</div>
