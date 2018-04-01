@@ -5,7 +5,7 @@ import Fade from 'material-ui/transitions/Fade';
 import { LinearProgress } from "material-ui/Progress";
 import { withStyles } from 'material-ui/styles';
 import NewLinkForm from "./form/NewLinkForm";
-import { createNewLink } from "../../actions";
+import { createNewLink, resetLink } from "../../actions";
 
 const styles = {
 	container: {
