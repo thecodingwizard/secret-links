@@ -70,6 +70,7 @@ class NewLinkForm extends React.Component {
 					value={this.state.description}
 					onChange={this.handleChange('description')}
 					fullWidth
+					multiline
 					helperText="Encrypted"
 					margin="dense"/>
 				<TextField
