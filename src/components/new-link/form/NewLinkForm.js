@@ -11,7 +11,7 @@ const styles = {
 		width: "100%",
 		marginTop: "1.5rem"
 	}
-}
+};
 
 class NewLinkForm extends React.Component {
 	constructor(props) {
