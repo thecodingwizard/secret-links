@@ -5,6 +5,8 @@ import TextField from "material-ui/TextField";
 import Button from "material-ui/Button";
 import { LinearProgress } from "material-ui/Progress";
 import { withStyles } from 'material-ui/styles';
+import { connect } from "react-redux";
+import { getLink, resetLink } from "../../actions/links.actions";
 
 const styles = {
 	container: {
@@ -20,6 +22,9 @@ const styles = {
 	},
 	button: {
 		marginTop: "1rem"
+	},
+	error: {
+		color: "red"
 	}
 };
 
@@ -42,7 +47,7 @@ class SearchPage extends React.Component {
 
 	onSubmit(e) {
 		e.preventDefault();
-		this.props.history.push(`/links/${this.state.search}`);
+		this.props.getLink(this.state.search, this.state.password);
 	}
 	
 	render() {
@@ -61,14 +66,31 @@ class SearchPage extends React.Component {
 						Go To Link
 					</Typography>
 
+					{
+						this.props.error &&
+						<Typography variant="subheading" className={classes.error}>
+							Error: {this.props.error}
+						</Typography>
+					}
+
 					<TextField
 						id="search"
 						label="Access URL"
 						value={this.state.search}
 						onChange={this.handleChange('search')}
 						helperText="Do not enter slashes"
-						margin="normal"
+						margin="dense"
+						required
 						fullWidth />
+					<TextField
+						id="password"
+						label="Password"
+						fullWidth
+						value={this.state.password}
+						onChange={this.handleChange('password')}
+						type="password"
+						required
+						margin="dense"/>
 					
 					<Button variant="raised" color="primary" className={classes.button} type="submit">
 						Go
@@ -79,4 +101,17 @@ class SearchPage extends React.Component {
 	}
 }
 
-export default withStyles(styles)(SearchPage);
+function mapStateToProps(state, ownProps) {
+	return {
+		loading: state.links.loading,
+		error: state.links.error,
+		link: state.links.link
+	};
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+	getLink: (accessUrl, password) => dispatch(getLink(accessUrl, password)),
+	resetLink: () => dispatch(resetLink())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SearchPage));
