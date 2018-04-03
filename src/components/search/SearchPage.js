@@ -33,10 +33,19 @@ class SearchPage extends React.Component {
 		super(props);
 
 		this.state = {
-			search: ""
+			search: "",
+			password: ""
 		};
 
 		this.onSubmit = this.onSubmit.bind(this);
+	}
+
+	static getDerivedStateFromProps(nextProps, prevState) {
+		if (!nextProps.loading && !nextProps.error && nextProps.accessUrl === prevState.search) {
+			nextProps.history.push(`/links/${nextProps.accessUrl}`);
+		}
+
+		return null;
 	}
 
 	handleChange = name => event => {
@@ -105,7 +114,8 @@ function mapStateToProps(state, ownProps) {
 	return {
 		loading: state.links.loading,
 		error: state.links.error,
-		link: state.links.link
+		link: state.links.link,
+		accessUrl: state.links.accessUrl
 	};
 }
 

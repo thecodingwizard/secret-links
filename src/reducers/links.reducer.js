@@ -37,6 +37,7 @@ const linksReducer = (state = initialState, action) => {
 				...state,
 				loading: false,
 				link: action.link,
+				accessUrl: action.link.accessUrl,
 				error: null
 			}
 		}
