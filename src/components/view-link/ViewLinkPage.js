@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import Fade from 'material-ui/transitions/Fade';
-import { LinearProgress } from "material-ui/Progress";
+import Fade from '@material-ui/core/Fade';
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 import EnterPassword from "../common/enter-password/EnterPassword"
 import LinkInfo from "./link-info/LinkInfo";

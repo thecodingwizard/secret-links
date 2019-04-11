@@ -1,16 +1,16 @@
 import React from "react";
 import { Route, Switch, Link } from "react-router-dom";
-import { withStyles } from "material-ui/styles";
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import SwipeableDrawer from 'material-ui/SwipeableDrawer';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import MenuIcon from 'material-ui-icons/Menu';
-import SearchIcon from "material-ui-icons/Search";
-import HomeIcon from "material-ui-icons/Home";
-import AddIcon from "material-ui-icons/Add";
+import { withStyles } from "@material-ui/core/styles";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import List, { ListItem, ListItemIcon, ListItemText } from '@material-ui/core/List';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from "@material-ui/icons/Search";
+import HomeIcon from "@material-ui/icons/Home";
+import AddIcon from "@material-ui/icons/Add";
 
 import HomePage from "./home/HomePage";
 import ViewLinkPage from "./view-link/ViewLinkPage";

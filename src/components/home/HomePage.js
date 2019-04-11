@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { withStyles } from 'material-ui/styles';
-import Button from "material-ui/Button";
-import Typography from "material-ui/Typography";
-import AddIcon from "material-ui-icons/Add";
+import { withStyles } from '@material-ui/core/styles';
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import AddIcon from "@material-ui/icons/Add";
 
 const styles = theme => ({
 	container: {

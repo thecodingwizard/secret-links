@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from 'react-redux'
-import Typography from "material-ui/Typography";
-import Fade from 'material-ui/transitions/Fade';
-import { LinearProgress } from "material-ui/Progress";
-import { withStyles } from 'material-ui/styles';
+import Typography from "@material-ui/core/Typography";
+import Fade from '@material-ui/core/Fade';
+import LinearProgress from "@material-ui/core/LinearProgress";
+import { withStyles } from '@material-ui/core/styles';
 import NewLinkForm from "./form/NewLinkForm";
 import { createNewLink, resetLink } from "../../actions";
 

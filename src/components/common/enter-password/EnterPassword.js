@@ -1,7 +1,7 @@
 import React from "react";
-import Typography from "material-ui/Typography";
-import TextField from "material-ui/TextField";
-import Button from "material-ui/Button";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import "./EnterPassword.css";
 
 export default class EnterPassword extends React.Component {
