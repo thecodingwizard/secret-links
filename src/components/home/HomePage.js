@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
-import Button from "@material-ui/core/Button";
+import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
 
@@ -13,6 +13,7 @@ const styles = theme => ({
 	title: {
 		textAlign: "center",
 		fontSize: "2rem",
+		marginTop: "4rem",
 		marginBottom: "1rem"
 	},
 	button: {
@@ -50,9 +51,9 @@ class HomePage extends React.Component {
 				</div>
 
 				<Link to="/links/new">
-					<Button variant="fab" color="secondary" aria-label="add" className={classes.button}>
+					<Fab color="secondary" aria-label="add" className={classes.button}>
 						<AddIcon />
-					</Button>
+					</Fab>
 				</Link>
 			</div>
 		);

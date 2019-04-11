@@ -1,7 +1,7 @@
 import "whatwg-fetch";
 import * as CryptoJS from "crypto-js";
 
-const SERVER = "https://secretlinksapi.pandadevgroup.com";
+const SERVER = "http://secret-links.herokuapp.com";
 
 export function fetchLink(accessUrl, password) {
 	return fetch(`${SERVER}/links/${accessUrl}`, {

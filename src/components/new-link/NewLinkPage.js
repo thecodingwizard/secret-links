@@ -16,7 +16,8 @@ const styles = {
 	},
 	title: {
 		textAlign: "center",
-		fontSize: "2rem"
+		fontSize: "2rem",
+		marginTop: "4rem",
 	}
 };
 

@@ -93,7 +93,7 @@ class NewLinkForm extends React.Component {
 					type="password"
 					margin="dense"/>
 				<Button
-					variant="raised"
+					variant="contained"
 					color="primary"
 					className={classes.button}
 					type="submit"

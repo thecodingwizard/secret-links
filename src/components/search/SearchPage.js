@@ -18,7 +18,8 @@ const styles = {
 	},
 	title: {
 		textAlign: "center",
-		fontSize: "2rem"
+		fontSize: "2rem",
+		marginTop: "4rem",
 	},
 	button: {
 		marginTop: "1rem"
@@ -101,7 +102,7 @@ class SearchPage extends React.Component {
 						required
 						margin="dense"/>
 					
-					<Button variant="raised" color="primary" className={classes.button} type="submit">
+					<Button variant="contained" color="primary" className={classes.button} type="submit">
 						Go
 					</Button>
 				</form>

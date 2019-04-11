@@ -37,7 +37,7 @@ class LinkInfo extends React.Component {
 				</Typography>
 				{link.description && <Typography className={classes.description}>{link.description}</Typography>}
 				<a href={link.link} className={classes.visitLink}>
-					<Button variant="raised" color="primary" fullWidth>
+					<Button variant="contained" color="primary" fullWidth>
 						Visit Link
 					</Button>
 				</a>
